@@ -1,0 +1,40 @@
+#container {
+    height: 500px;
+    width: 500px;
+    border: solid 1px black;
+    background-image: url('../images/wallpaper.jpg');
+    background-size: 500px;
+}
+
+#card {
+    height: 300px;
+    width: 300px;
+    border: solid 1px black;
+    background: white;
+}
+
+#containerCircle {
+    width: 300px;
+}
+
+#circleRed {
+    background: rgba(216, 9, 9, 0.774);
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    border-style: none;
+    color: white;
+    font-size: 50px;
+    padding: 5px;
+}
+
+#circleGreen {
+    background: rgb(13, 146, 13);
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    border-style: none;
+    color: white;
+    font-size: 50px;
+    padding: 5px;
+}
