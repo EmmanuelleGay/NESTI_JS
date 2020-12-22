@@ -19,71 +19,72 @@ si le joueur ne choisit aucun ingrédients principal, on passera alors a la list
 
  */
 
-var ingredient = [
-    'pate',
-    'riz',
-    'dinde',
-    'pate feuilletée',
-    'feuille de brick',
-    'cabillaud',
-    'pomme de terre',
-    'poulet',
-    'viande hachée',
-    'tomate',
-    'roquefort',
-    'emmental',
-    'chevre',
-    'mozzarella',
-    'lardons',
-    'lait',
-    'moules',
-    'crevettes',
-    'chorizo',
-    'champignon',
-    'marron',
-    'ail',
-    'vin blanc',
-    'roblochon',
-    'oignon',
-    'creme fraiche',
-    'jambon',
-    'chapelure',
-    'vin rouge',
-    'carottes',
-    'boeuf',
-    'fraise',
-    'oeuf',
-    'caramel',
-    'banane',
+ // on charge le premier ingredient au lancement de la page
+document.querySelector("#card").addEventListener('load',displayRandomIngrendient);
+
+
+var arrayIngredient = [
     'chocolat',
-    'miel'
+    'farine',
+    'sucre',
+    'oeuf',
+    'lait',
+    'citron',
+    'banane',
+    'fruit rouge',
+    'fraise',
+    'carotte',
+    'fromage blanc',
+    'poire',
+    "poudre d'amande",
+    'vanille',
+    'pistache',
+    'beurre',
+    'pâte sablée',
+    'creme fraiche',
+    "melange d'epice",
+    'gelatine',
+    'boudoir',
+    'pomme',
+    'cerise',
+    'café'
 ]
 
-var ing1;
-var ing2;
-var ing3;
-var ing4;
-var ing5;
+var arrayIngRecipe = new Array;
+
+
 var numberIng;
+var like = true;
 
-var maxArray = Array.length;
 chooseIngredient();
-do {
-  // demander un choix
-}
 
-while (numberIng < 5);
 
 // on propose la recette
 
 
-function chooseIngredient(){
-console.log (ingredientProposed);
+function chooseIngredient() {
 
+    do { // demander un choix
+        displayRandomIngrendient();
+        if (like) {
+            arrayIngRecipe.push(ingredientProposed);
+            numberIng += 1;
+            console.log(arrayIngRecipe);
+        }
+    } while (numberIng < 5);
+
+    console.log("tableau ok");
 }
 
-function randomIngrendient(maxArray) {
-    var min = 0;
-    ingredientProposed = Math.random() * (maxArray - min) + min
+function displayRandomIngrendient() {
+    ingredientProposed = Math.round(Math.random() * (arrayIngredient.length - 1));
+    console.log(ingredientProposed);
+    var contIngredient = document.createElement('div');
+    ingredientProposed = arrayIngredient[ingredientProposed];
+    contIngredient.appendChild(document.createTextNode(ingredientProposed));
+    document.getElementById("card").appendChild(contIngredient);
 }
 
+function chooseRecipe(){
+
+}
