@@ -19,8 +19,8 @@ si le joueur ne choisit aucun ingrédients principal, on passera alors a la list
 
  */
 
- // on charge le premier ingredient au lancement de la page
-document.querySelector("#card").addEventListener('load',displayRandomIngrendient);
+// on charge le premier ingredient au lancement de la page
+document.querySelector("#card").addEventListener('load', displayRandomIngrendient);
 
 
 var arrayIngredient = [
@@ -42,8 +42,6 @@ var arrayIngredient = [
     'beurre',
     'pâte sablée',
     'creme fraiche',
-    "melange d'epice",
-    'gelatine',
     'boudoir',
     'pomme',
     'cerise',
@@ -58,12 +56,10 @@ var like = true;
 
 chooseIngredient();
 
-
-// on propose la recette
-
-
+/**
+ * display and ingredient to the user and insert into a tab
+ */
 function chooseIngredient() {
-
     do { // demander un choix
         displayRandomIngrendient();
         if (like) {
@@ -71,11 +67,14 @@ function chooseIngredient() {
             numberIng += 1;
             console.log(arrayIngRecipe);
         }
-    } while (numberIng < 5);
+    } while (numberIng < 3);
 
     console.log("tableau ok");
 }
 
+/**
+ * selection a random ingredient into the list of ingredient
+ */
 function displayRandomIngrendient() {
     ingredientProposed = Math.round(Math.random() * (arrayIngredient.length - 1));
     console.log(ingredientProposed);
@@ -85,6 +84,13 @@ function displayRandomIngrendient() {
     document.getElementById("card").appendChild(contIngredient);
 }
 
-function chooseRecipe(){
-
+// check if the recipe has the corresponding ingredient. if yes, we're putting into the ing array
+function chooseRecipe() {
+    for (let i = 1; i < arrayIngRecipe.length; i++) {
+        // si l'ingredient est dans la recette, alors on met la recette dans le tableau
+        if (recipeArray['ingredient'])
+        arrayIngRecipe.push(ingredientProposed);
+    }
 }
+
+var monTest = document.getElementById(test);
