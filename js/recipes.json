@@ -29,5 +29,78 @@
             "banane",
             "poudre d'amande"
         ]
+    },
+    {
+        "id": "4",
+        "name": "ile flottante",
+        "ingredients": [
+            "lait",
+            "oeuf",
+            "sucre",
+            "vanille"
+        ]
+    },
+    {
+        "id": "5",
+        "name": "crème brulée",
+        "ingredients": [
+            "vanille",
+            "oeuf",
+            "sucre"
+        ]
+    },
+    {
+        "id": "6",
+        "name": "tarte au citron",
+        "ingredients": [
+            "farine",
+            "oeuf",
+            "sucre",
+            "citron",
+            "pate sablée brisée"
+        ]
+    },
+    {
+        "id": "7",
+        "name": "tarte aux fruits rouges",
+        "ingredients": [
+            "lait",
+            "oeuf",
+            "sucre",
+            "fruit rouge",
+            "pate sablée brisée",
+            "creme fraiche"
+        ]
+    },
+    {
+        "id": "8",
+        "name": "tarte au chocolat",
+        "ingredients": [
+            "pate sablée brisée",
+            "creme fraiche",
+            "chocolat"
+        ]
+    },
+    {
+        "id": "9",
+        "name": "sablés",
+        "ingredients": [
+            "farine",
+            "oeuf",
+            "sucre",
+            "beurre"
+        ]
+    },
+    {
+        "id": "10",
+        "name": "muffins aux pepites de chocolat",
+        "ingredients": [
+            "lait",
+            "oeuf",
+            "sucre",
+            "chocolat",
+            "farine",
+            "beurre"
+        ]
     }
 ]
