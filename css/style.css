@@ -213,7 +213,7 @@ img {
 }
 
 .but-nope::after {
-    content: 'Sweep';
+    content: 'Non';
     position: absolute;
     top: -35px;
     left: -300px;
@@ -233,7 +233,7 @@ img {
 }
 
 .but-yay::after {
-    content: 'Keep';
+    content: 'Oui';
     position: absolute;
     top: -35px;
     right: -300px;
@@ -300,6 +300,6 @@ img {
 
 #counter {
     position: absolute;
-    bottom: 165px;
+    bottom: 220px;
     right: 15px;
 }
