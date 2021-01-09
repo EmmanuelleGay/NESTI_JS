@@ -1,0 +1,33 @@
+[
+    {
+        "id": "1",
+        "name": "moelleux au chocolat",
+        "ingredients": [
+            "chocolat",
+            "farine",
+            "oeuf",
+            "sucre"
+        ]
+    },
+    {
+        "id": "2",
+        "name": "quatre quart",
+        "ingredients": [
+            "farine",
+            "oeuf",
+            "sucre",
+            "beurre"
+        ]
+    },
+    {
+        "id": "3",
+        "name": "banana bread",
+        "ingredients": [
+            "farine",
+            "oeuf",
+            "lait",
+            "banane",
+            "poudre d'amande"
+        ]
+    }
+]

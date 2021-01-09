@@ -2,34 +2,57 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nesti</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Nesti Recipes</title>
+
     <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-    <div class="row">
-        <div class="col">
-            <div class="mt-md-5">
-                <div class="d-flex justify-content-center">
-                    <div id="container" class="d-flex justify-content-center align-items-center flex-column">
-                        <div id="card"></div>
-                        <div id="containerCircle" class="d-flex justify-content-around mt-md-4 ">
-                            <div id="circleRed" class="text-center"><b>X</br></b></div>
-                            <div id="circleGreen" class="text-center"><b>V</b></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <section>
 
-    <span id="test"></span>
+        <div class="cardcontainer list">
+
+            <ul class="cardlist">
+                <li class="card current"><img src="images/almond_powder.jpg" alt="">
+                <li class="card"><img src="images/apple.jpg" alt=""></li>
+                <li class="card"><img src="images/bananas.jpg" alt=""></li>
+                <li class="card"><img src="images/berries.jpg" alt=""></li>
+                <li class="card"><img src="images/butter.jpg" alt=""></li>
+                <li class="card"><img src="images/carrots.jpg" alt=""></li>
+                <li class="card"><img src="images/cherry.jpg" alt=""></li>
+                <li class="card"><img src="images/chocolate.jpg" alt=""></li>
+                <li class="card"><img src="images/coffee.jpg" alt=""></li>
+                <li class="card"><img src="images/cream.jpg" alt=""></li>
+                <li class="card"><img src="images/dough.jpg" alt=""></li>
+                <li class="card"><img src="images/eggs.jpg" alt=""></li>
+                <li class="card"><img src="images/flour.jpg" alt=""></li>
+                <li class="card"><img src="images/lemon.jpg" alt=""></li>
+                <li class="card"><img src="images/milk.jpg" alt=""></li>
+                <li class="card"><img src="images/pear.jpg" alt=""></li>
+                <li class="card"><img src="images/pistachio.jpg" alt=""></li>
+                <li class="card"><img src="images/strawberries.jpg" alt=""></li>
+                <li class="card"><img src="images/sugar.jpg" alt=""></li>
+                <li class="card"><img src="images/vanilla.jpg" alt=""></li>
+            </ul>
+
+            <button class="but-nope">X</button>
+            <button class="but-yay">✔</button>
+
+            <p>Choose your Ingredients !</p>
+
+            <span id="counter"></span>
+
+        </div>
+
+        <ul class="cardlist" id="results"> </ul>
+
+    </section>
 
     <script src="js/nesti.js"></script>
 
