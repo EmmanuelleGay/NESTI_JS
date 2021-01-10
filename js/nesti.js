@@ -77,144 +77,201 @@ function chooseRecipe() {
 }
 var monTest = document.getElementById(test);*/
 
+/**
+ * allows to generate ingredients, read the json elements
+ */
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+        var myObj = JSON.parse(this.responseText);
+        myObj.forEach(function (element, index) {
+            var card = new Card(index, element.ingredients, element.images);
+            card.create();
+        });
+    }
+};
+xmlhttp.open("GET", "./js/ingredients.json", true);
+xmlhttp.send();
+
+/**
+ * Create constructor for each Card
+ */
+
+
 class Card {
-  constructor(name, images) {
-    this.name = name;
-    this.images = images;
-  }
+    constructor(index, name, images) {
+        this.index = index;
+        this.name = name;
+        this.images = images;
+    }
+
+    /**
+ * Create the card with image
+ */
+    create() {
+        var nameContainer = document.querySelector(".cardcontainer");
+        var container = document.querySelector(".cardlist");
+        var cardContent = document.createElement("li");
+        var containerIngredient = document.createElement("p");
+        var contentImage = document.createElement("img");
+        /** add class card to be able to use animation */
+        cardContent.className = "card";
+        /** if it's the first, we add "current" to be used with the animation */
+        if (this.index == 0) {
+            cardContent.className += " current";  
+            containerIngredient.textContent = this.name;   
+        }
+
+     
+        localStorage.setItem(this.index,this.name);
+
+        /**add image link */
+        contentImage.src = "images/" + this.images;
+        /** add element to the parent container */
+        cardContent.appendChild(contentImage);
+        container.appendChild(cardContent);
+        nameContainer.appendChild(containerIngredient);
+    }
+
 }
 
+
+var arrayIngRecipe = new Array;
+
+
+
 (function () {
-  var animating = false;
+    var animating = false;
 
-  function animatecard(ev) {
-    if (animating === false) {
-      var t = ev.target;
-      if (t.className === 'but-nope') {
-        t.parentNode.classList.add('nope');
-        animating = true;
-        fireCustomEvent('nopecard',
-          {
-            origin: t,
-            container: t.parentNode,
-            card: t.parentNode.querySelector('.card')
-          }
-        );
-      }
-      if (t.className === 'but-yay') {
-        t.parentNode.classList.add('yes');
-        animating = true;
-        fireCustomEvent('yepcard',
-          {
-            origin: t,
-            container: t.parentNode,
-            card: t.parentNode.querySelector('.card')
-          }
-        );
-      }
-      if (t.classList.contains('current')) {
-        fireCustomEvent('cardchosen',
-          {
-            container: getContainer(t),
-            card: t
-          }
-        );
-      }
-    }
-  }
-
-  function fireCustomEvent(name, payload) {
-    var newevent = new CustomEvent(name, {
-      detail: payload
-    });
-    document.body.dispatchEvent(newevent);
-  }
-
-  function getContainer(elm) {
-    var origin = elm.parentNode;
-    if (!origin.classList.contains('cardcontainer')) {
-      origin = origin.parentNode;
-    }
-    return origin;
-  }
-
-  function animationdone(ev) {
-    animating = false;
-    var origin = getContainer(ev.target);
-    if (ev.animationName === 'yay') {
-      origin.classList.remove('yes');
-    }
-    if (ev.animationName === 'nope') {
-      origin.classList.remove('nope');
-    }
-    if (origin.classList.contains('list')) {
-      if (ev.animationName === 'nope' ||
-        ev.animationName === 'yay') {
-        origin.querySelector('.current').remove();
-        if (!origin.querySelector('.card')) {
-          fireCustomEvent('deckempty', {
-            origin: origin.querySelector('button'),
-            container: origin,
-            card: null
-          });
-        } else {
-          origin.querySelector('.card').classList.add('current');
+    function animatecard(ev) {
+        if (animating === false) {
+            var t = ev.target;
+            if (t.className === 'but-nope') {
+                t.parentNode.classList.add('nope');
+                animating = true;
+                /**when the user clicked the "no" button */
+                fireCustomEvent('nopecard', {
+                    origin: t,
+                    container: t.parentNode,
+                    card: t.parentNode.querySelector('.card')
+                });
+            }
+            if (t.className === 'but-yay') {
+                t.parentNode.classList.add('yes');
+                animating = true;
+                /**when the user clicked the "yes" button */
+                fireCustomEvent('yepcard', {
+                    origin: t,
+                    container: t.parentNode,
+                    card: t.parentNode.querySelector('.card')
+                });
+                /**add ingredient into recette list to propose */
+     //                  arrayIngRecipe.push(nameIngredient);
+                        console.log(arrayIngRecipe);
+            }
+            /** actual card => moving */
+            if (t.classList.contains('current')) {
+                fireCustomEvent('cardchosen', {
+                    container: getContainer(t),
+                    card: t
+                });
+            }
         }
-      }
     }
-  }
-  document.body.addEventListener('animationend', animationdone);
-  document.body.addEventListener('webkitAnimationEnd', animationdone);
-  document.body.addEventListener('click', animatecard);
-  window.addEventListener('DOMContentLoaded', function () {
-    document.body.classList.add('tinderesque');
-  });
+
+    function fireCustomEvent(name, payload) {
+        var newevent = new CustomEvent(name, {detail: payload});
+        document.body.dispatchEvent(newevent);
+    }
+
+    function getContainer(elm) {
+        var origin = elm.parentNode;
+        if (! origin.classList.contains('cardcontainer')) {
+            origin = origin.parentNode;
+        }
+        return origin;
+    }
+
+    function animationdone(ev) {
+        animating = false;
+        var origin = getContainer(ev.target);
+        if (ev.animationName === 'yay') {
+            origin.classList.remove('yes');
+        }
+        if (ev.animationName === 'nope') {
+            origin.classList.remove('nope');
+        }
+        if (origin.classList.contains('list')) {
+            if (ev.animationName === 'nope' || ev.animationName === 'yay') {
+                origin.querySelector('.current').remove();
+                if (! origin.querySelector('.card')) {
+                    fireCustomEvent('deckempty', {
+                        origin: origin.querySelector('button'),
+                        container: origin,
+                        card: null
+                    });
+                } else {
+                    origin.querySelector('.card').classList.add('current');
+                }
+            }
+        }
+    }
+    document.body.addEventListener('animationend', animationdone);
+    document.body.addEventListener('webkitAnimationEnd', animationdone);
+    document.body.addEventListener('click', animatecard);
+    window.addEventListener('DOMContentLoaded', function () {
+        document.body.classList.add('tinderesque');
+    });
 })();
 
 (function () {
 
-  var all = 0;
-  var results = document.querySelector('#results');
-  var counter = document.querySelector('#counter');
+    var all = 0;
+    var results = document.querySelector('#results');
+    var counter = document.querySelector('#counter');
 
-  function updatecounter() {
-    --all;
-    counter.innerHTML = all;
-  }
-
-  document.body.addEventListener('yepcard', function (ev) {
-    results.innerHTML += '<li>' + ev.detail.card.innerHTML + '</li>';
-    updatecounter();
-  });
-
-  document.body.addEventListener('nopecard', function (ev) {
-    updatecounter();
-  });
-
-  document.body.addEventListener('deckempty', function (ev) {
-    results.classList.add('live');
-    ev.detail.container.style.display = 'none';
-  });
-
-  window.addEventListener('load', function (ev) {
-    // check if template is supported
-    // browsers without it wouldn't need to
-    // do the content shifting
-    if ('content' in document.createElement('template')) {
-      // get the template
-      var t = document.querySelector('template');
-      // get its parent element
-      var list = t.parentNode;
-      // cache the template content
-      var contents = t.innerHTML;
-      // kill the template
-      list.removeChild(t);
-      // add the cached content to the parent
-      list.innerHTML += contents;
+    function updatecounter() {
+        -- all;
+        counter.innerHTML = all;
     }
-    var listitems = document.body.querySelectorAll('.card');
-    all = listitems.length + 1;
-    updatecounter();
-  });
 
+    document.body.addEventListener('yepcard', function (ev) {
+        results.innerHTML += '<li>' + ev.detail.card.innerHTML + '</li>';
+        updatecounter();
+    });
+
+    document.body.addEventListener('nopecard', function (ev) {
+        updatecounter();
+    });
+
+    /**
+     * when all cards are gone - you can use this to pull new content
+     * Ici il faudra afficher les recettes
+     */
+    document.body.addEventListener('deckempty', function (ev) {
+
+        results.classList.add('live');
+        ev.detail.container.style.display = 'none';
+    });
+    /*
+    window.addEventListener('load', function (ev) {
+        // check if template is supported
+        // browsers without it wouldn't need to
+        // do the content shifting
+        if ('content' in document.createElement('template')) { // get the template
+            var t = document.querySelector('template');
+            // get its parent element
+            var list = t.parentNode;
+            // cache the template content
+            var contents = t.innerHTML;
+            // kill the template
+            list.removeChild(t);
+            // add the cached content to the parent
+            list.innerHTML += contents;
+        }
+        var listitems = document.body.querySelectorAll('.card');
+        all = listitems.length + 1;
+        updatecounter();
+    });
+*/
 })();
