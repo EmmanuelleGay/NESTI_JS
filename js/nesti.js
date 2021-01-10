@@ -84,7 +84,6 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         var myObj = JSON.parse(this.responseText);
-        //      document.getElementById("demo").innerHTML = myObj.name;
         myObj.forEach(function (element, index) {
             var card = new Card(index, element.ingredients, element.images);
             card.create();
@@ -98,6 +97,7 @@ xmlhttp.send();
  * Create constructor for each Card
  */
 
+
 class Card {
     constructor(index, name, images) {
         this.index = index;
@@ -109,28 +109,36 @@ class Card {
  * Create the card with image
  */
     create() {
+        var nameContainer = document.querySelector(".cardcontainer");
         var container = document.querySelector(".cardlist");
         var cardContent = document.createElement("li");
-  //      var nameIngredient = document.createElement("p");
-       var contentImage = document.createElement("img");
+        var containerIngredient = document.createElement("p");
+        var contentImage = document.createElement("img");
         /** add class card to be able to use animation */
         cardContent.className = "card";
         /** if it's the first, we add "current" to be used with the animation */
         if (this.index == 0) {
-            cardContent.className += " current"
+            cardContent.className += " current";  
+            containerIngredient.textContent = this.name;   
         }
- //       nameIngredient.textContent = this.name;
+
+     
+        localStorage.setItem(this.index,this.name);
+
         /**add image link */
         contentImage.src = "images/" + this.images;
         /** add element to the parent container */
         cardContent.appendChild(contentImage);
         container.appendChild(cardContent);
+        nameContainer.appendChild(containerIngredient);
     }
 
 }
 
 
 var arrayIngRecipe = new Array;
+
+
 
 (function () {
     var animating = false;
@@ -158,8 +166,8 @@ var arrayIngRecipe = new Array;
                     card: t.parentNode.querySelector('.card')
                 });
                 /**add ingredient into recette list to propose */
-         //       arrayIngRecipe.push(elem);
-        //        console.log(arrayIngRecipe);
+     //                  arrayIngRecipe.push(nameIngredient);
+                        console.log(arrayIngRecipe);
             }
             /** actual card => moving */
             if (t.classList.contains('current')) {
@@ -241,7 +249,7 @@ var arrayIngRecipe = new Array;
      * Ici il faudra afficher les recettes
      */
     document.body.addEventListener('deckempty', function (ev) {
-        
+
         results.classList.add('live');
         ev.detail.container.style.display = 'none';
     });
