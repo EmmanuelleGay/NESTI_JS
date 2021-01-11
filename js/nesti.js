@@ -126,7 +126,7 @@ class Card {
         localStorage.setItem(this.index,this.name);
 
         /**add image link */
-        contentImage.src = "images/" + this.images;
+        contentImage.src = "images/ingredients/" + this.images;
         /** add element to the parent container */
         cardContent.appendChild(contentImage);
         container.appendChild(cardContent);
