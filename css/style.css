@@ -87,7 +87,6 @@ body {
     color: black;
     font-size: 20px;
     padding: 0;
-
 }
 
 /*section*************************************************************************************************************************************************/
@@ -95,7 +94,7 @@ body {
 section {
     display: block;
     padding: 0.5em 1em;
-    margin: 150px;
+    margin: 80px;
 }
 
 p, .titleFridge {
@@ -108,7 +107,6 @@ p, .titleFridge {
     text-align: center;
     margin-top: 50px;
 }
-
 
 .list .card {
     display: block;
@@ -310,4 +308,3 @@ img {
     bottom: 220px;
     right: 15px;
 }
-
