@@ -102,5 +102,156 @@
             "farine",
             "beurre"
         ]
+    },
+    {
+        "id": "11",
+        "name": "carotte cake",
+        "ingredients": [
+            "citron",
+            "oeuf",
+            "sucre",
+            "carotte",
+            "farine",
+            "fromage blanc",
+            "poudre d'amande",
+            "beurre"
+        ]
+    },
+    {
+        "id": "12",
+        "name": "cheese cake",
+        "ingredients": [
+            "fromage blanc",
+            "oeuf",
+            "sucre",
+            "vanille",
+            "beurre",
+            "creme fraiche"
+        ]
+    },
+    {
+        "id": "13",
+        "name": "fraisier",
+        "ingredients": [
+            "lait",
+            "oeuf",
+            "sucre",
+            "fraise",
+            "farine",
+            "beurre",
+            "vanille",
+            "creme fraiche"
+        ]
+    },
+    {
+        "id": "14",
+        "name": "charlotte aux fraises",
+        "ingredients": [
+            "sucre",
+            "citron",
+            "fraise",
+            "creme fraiche",
+            "boudoir"
+        ]
+    },
+    {
+        "id": "15",
+        "name": "mousse au chocolat allégée",
+        "ingredients": [
+            "oeuf",
+            "chocolat"
+        ]
+    },
+    {
+        "id": "16",
+        "name": "tartelette chocolat caramel",
+        "ingredients": [
+            "oeuf",
+            "sucre",
+            "chocolat",
+            "farine",
+            "beurre",
+            "creme fraiche"
+        ]
+    },
+    {
+        "id": "17",
+        "name": "crumble aux pommes",
+        "ingredients": [
+            "sucre",
+            "pommes",
+            "farine",
+            "beurre"
+        ]
+    },
+    {
+        "id": "18",
+        "name": "tarte poire amandine",
+        "ingredients": [
+            "oeuf",
+            "sucre",
+            "beurre",
+            "poire",
+            "poudre d'amande",
+            "pate sablée brisée"
+        ]
+    },
+    {
+        "id": "19",
+        "name": "macaron à la pistache",
+        "ingredients": [
+            "oeuf",
+            "sucre",
+            "poudre d'amande",
+            "pistache",
+            "creme fraiche"
+        ]
+    },
+    {
+        "id": "20",
+        "name": "salade de fruit",
+        "ingredients": [
+            "banane",
+            "fraise",
+            "poire",
+            "pommes",
+            "cerises"
+        ]
+    },
+    {
+        "id": "21",
+        "name": "clafoutis",
+        "ingredients": [
+            "lait",
+            "oeuf",
+            "sucre",
+            "vanille",
+            "farine",
+            "beurre",
+            "cerises"
+        ]
+    },
+    {
+        "id": "22",
+        "name": "flan vanille",
+        "ingredients": [
+            "lait",
+            "oeuf",
+            "sucre",
+            "vanille",
+            "farine",
+            "beurre",
+            "pate sablée brisée"
+        ]
+    },
+    {
+        "id": "23",
+        "name": "tiramisu",
+        "ingredients": [
+            "sucre",
+            "creme fraiche",
+            "boudoir",
+            "café"
+        ]
     }
 ]
