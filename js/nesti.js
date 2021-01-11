@@ -125,9 +125,9 @@ class Card {
         /** if it's the first, we add "current" to be used with the animation */
         if (this.index == 0) {
             cardContent.className += " current";
-            containerIngredient.textContent += this.name;
+            containerIngredient.textContent = this.name;
         }
-        ingredientList.push(this.name);
+
         localStorage.setItem(this.index, this.name);
 
         /**add image link */
@@ -137,12 +137,9 @@ class Card {
         container.appendChild(cardContent);
         nameContainer.appendChild(containerIngredient);
     }
-
 }
 
-
 var arrayIngRecipe = new Array;
-
 
 (function () {
     var animating = false;
@@ -185,21 +182,23 @@ var arrayIngRecipe = new Array;
     }
 
     function fireCustomEvent(name, payload) {
-        var newevent = new CustomEvent(name, {detail: payload});
+        var newevent = new CustomEvent(name, { detail: payload });
         document.body.dispatchEvent(newevent);
     }
 
     function getContainer(elm) {
         var origin = elm.parentNode;
-        if (! origin.classList.contains('cardcontainer')) {
+        if (!origin.classList.contains('cardcontainer')) {
             origin = origin.parentNode;
         }
         return origin;
     }
 
     function animationdone(ev) {
+
         animating = false;
         var origin = getContainer(ev.target);
+        var infinite = origin.querySelector(".current")
         if (ev.animationName === 'yay') {
             origin.classList.remove('yes');
         }
@@ -209,7 +208,7 @@ var arrayIngRecipe = new Array;
         if (origin.classList.contains('list')) {
             if (ev.animationName === 'nope' || ev.animationName === 'yay') {
                 origin.querySelector('.current').remove();
-                if (! origin.querySelector('.card')) {
+                if (!origin.querySelector('.card')) {
                     fireCustomEvent('deckempty', {
                         origin: origin.querySelector('button'),
                         container: origin,
@@ -222,6 +221,7 @@ var arrayIngRecipe = new Array;
                     origin.querySelector('.card').classList.add('current');
                 }
             }
+            
         }
         /**
          * allows to display name of ingredients of each click
@@ -245,7 +245,7 @@ var arrayIngRecipe = new Array;
     var counter = document.querySelector('#counter');
 
     function updatecounter() {
-        -- all;
+        --all;
         counter.innerHTML = all;
     }
 
@@ -262,11 +262,12 @@ var arrayIngRecipe = new Array;
      * when all cards are gone - you can use this to pull new content
      * Ici il faudra afficher les recettes
      */
-    document.body.addEventListener('deckempty', function (ev) {
 
+    document.body.addEventListener('deckempty', function (ev) {
         results.classList.add('live');
         ev.detail.container.style.display = 'none';
     });
+
     /*
     window.addEventListener('load', function (ev) {
         // check if template is supported
