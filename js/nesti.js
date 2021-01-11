@@ -235,6 +235,9 @@ var arrayIngRecipe = new Array;
         var ingredientName = document.querySelector("#nameIngredient");
         ingredientName.innerHTML = ingredientList[counterIngredient];
         counterIngredient++;
+        if(counterIngredient == ingredientList.length){
+            counterIngredient = 0;
+        }
     }
     document.body.addEventListener('animationend', animationdone);
     document.body.addEventListener('webkitAnimationEnd', animationdone);
