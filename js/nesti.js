@@ -93,6 +93,11 @@ xmlhttp.onreadystatechange = function () {
 xmlhttp.open("GET", "./js/ingredients.json", true);
 xmlhttp.send();
 
+
+var ingredientList = [];
+var counterIngredient = 1;
+
+
 /**
  * Create constructor for each Card
  */
@@ -113,6 +118,7 @@ class Card {
         var container = document.querySelector(".cardlist");
         var cardContent = document.createElement("li");
         var containerIngredient = document.createElement("p");
+        containerIngredient.id = "nameIngredient";
         var contentImage = document.createElement("img");
         /** add class card to be able to use animation */
         cardContent.className = "card";
@@ -161,7 +167,8 @@ var arrayIngRecipe = new Array;
                     card: t.parentNode.querySelector('.card')
                 });
                 /**add ingredient into recette list to propose */
-                //                  arrayIngRecipe.push(nameIngredient);
+                   arrayIngRecipe.push(ingredientList[counterIngredient - 1]);
+             
                 console.log(arrayIngRecipe);
             }
             /** actual card => moving */
@@ -206,24 +213,28 @@ var arrayIngRecipe = new Array;
                         origin: origin.querySelector('button'),
                         container: origin,
                         card: null
+
+                        
                     });
+
                 } else {
                     origin.querySelector('.card').classList.add('current');
                 }
             }
+            
         }
         /**
-         * infinite list ingredients
+         * allows to display name of ingredients of each click
          */
-        var container = document.querySelector(".cardlist");
-        infinite.classList.remove("current");
-        container.appendChild(infinite);
+        var ingredientName = document.querySelector("#nameIngredient");
+        ingredientName.innerHTML = ingredientList[counterIngredient];
+        counterIngredient++;
     }
     document.body.addEventListener('animationend', animationdone);
     document.body.addEventListener('webkitAnimationEnd', animationdone);
     document.body.addEventListener('click', animatecard);
     window.addEventListener('DOMContentLoaded', function () {
-        document.body.classList.add('tinderesque');
+    document.body.classList.add('tinderesque');
     });
 })();
 
