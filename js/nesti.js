@@ -125,9 +125,9 @@ class Card {
         /** if it's the first, we add "current" to be used with the animation */
         if (this.index == 0) {
             cardContent.className += " current";
-            containerIngredient.textContent = this.name;
+            containerIngredient.textContent += this.name;
         }
-
+        ingredientList.push(this.name);
         localStorage.setItem(this.index, this.name);
 
         /**add image link */
@@ -167,8 +167,8 @@ var arrayIngRecipe = new Array;
                     card: t.parentNode.querySelector('.card')
                 });
                 /**add ingredient into recette list to propose */
-                   arrayIngRecipe.push(ingredientList[counterIngredient - 1]);
-             
+                arrayIngRecipe.push(ingredientList[counterIngredient - 1]);
+
                 console.log(arrayIngRecipe);
             }
             /** actual card => moving */
@@ -214,14 +214,20 @@ var arrayIngRecipe = new Array;
                         container: origin,
                         card: null
 
-                        
+
                     });
 
                 } else {
                     origin.querySelector('.card').classList.add('current');
                 }
             }
-            
+            /**
+             * infinite list ingredients
+             *  */
+
+            var container = document.querySelector(".cardlist");
+            infinite.classList.remove("current");
+            container.appendChild(infinite);
         }
         /**
          * allows to display name of ingredients of each click
@@ -234,7 +240,7 @@ var arrayIngRecipe = new Array;
     document.body.addEventListener('webkitAnimationEnd', animationdone);
     document.body.addEventListener('click', animatecard);
     window.addEventListener('DOMContentLoaded', function () {
-    document.body.classList.add('tinderesque');
+        document.body.classList.add('tinderesque');
     });
 })();
 
