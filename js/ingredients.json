@@ -36,6 +36,10 @@
         "images": "coffee.jpg"
     },
     {
+        "ingredients": "fromage blanc",
+        "images": "cottage_cheese.jpg"
+    },
+    {
         "ingredients": "crème",
         "images": "cream.jpg"
     },
@@ -74,6 +78,10 @@
     {
         "ingredients": "sucre",
         "images": "sugar.jpg"
+    },
+    {
+        "ingredients": "boudoir",
+        "images": "sweet_biscuits.jpg"
     },
     {
         "ingredients": "vanille",

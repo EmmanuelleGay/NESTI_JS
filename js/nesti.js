@@ -118,12 +118,11 @@ class Card {
         cardContent.className = "card";
         /** if it's the first, we add "current" to be used with the animation */
         if (this.index == 0) {
-            cardContent.className += " current";  
-            containerIngredient.textContent = this.name;   
+            cardContent.className += " current";
+            containerIngredient.textContent = this.name;
         }
 
-     
-        localStorage.setItem(this.index,this.name);
+        localStorage.setItem(this.index, this.name);
 
         /**add image link */
         contentImage.src = "images/ingredients/" + this.images;
@@ -132,13 +131,9 @@ class Card {
         container.appendChild(cardContent);
         nameContainer.appendChild(containerIngredient);
     }
-
 }
 
-
 var arrayIngRecipe = new Array;
-
-
 
 (function () {
     var animating = false;
@@ -166,8 +161,8 @@ var arrayIngRecipe = new Array;
                     card: t.parentNode.querySelector('.card')
                 });
                 /**add ingredient into recette list to propose */
-     //                  arrayIngRecipe.push(nameIngredient);
-                        console.log(arrayIngRecipe);
+                //                  arrayIngRecipe.push(nameIngredient);
+                console.log(arrayIngRecipe);
             }
             /** actual card => moving */
             if (t.classList.contains('current')) {
@@ -180,21 +175,23 @@ var arrayIngRecipe = new Array;
     }
 
     function fireCustomEvent(name, payload) {
-        var newevent = new CustomEvent(name, {detail: payload});
+        var newevent = new CustomEvent(name, { detail: payload });
         document.body.dispatchEvent(newevent);
     }
 
     function getContainer(elm) {
         var origin = elm.parentNode;
-        if (! origin.classList.contains('cardcontainer')) {
+        if (!origin.classList.contains('cardcontainer')) {
             origin = origin.parentNode;
         }
         return origin;
     }
 
     function animationdone(ev) {
+
         animating = false;
         var origin = getContainer(ev.target);
+        var infinite = origin.querySelector(".current")
         if (ev.animationName === 'yay') {
             origin.classList.remove('yes');
         }
@@ -204,7 +201,7 @@ var arrayIngRecipe = new Array;
         if (origin.classList.contains('list')) {
             if (ev.animationName === 'nope' || ev.animationName === 'yay') {
                 origin.querySelector('.current').remove();
-                if (! origin.querySelector('.card')) {
+                if (!origin.querySelector('.card')) {
                     fireCustomEvent('deckempty', {
                         origin: origin.querySelector('button'),
                         container: origin,
@@ -215,6 +212,12 @@ var arrayIngRecipe = new Array;
                 }
             }
         }
+        /**
+         * infinite list ingredients
+         */
+        var container = document.querySelector(".cardlist");
+        infinite.classList.remove("current");
+        container.appendChild(infinite);
     }
     document.body.addEventListener('animationend', animationdone);
     document.body.addEventListener('webkitAnimationEnd', animationdone);
@@ -231,7 +234,7 @@ var arrayIngRecipe = new Array;
     var counter = document.querySelector('#counter');
 
     function updatecounter() {
-        -- all;
+        --all;
         counter.innerHTML = all;
     }
 
@@ -248,11 +251,12 @@ var arrayIngRecipe = new Array;
      * when all cards are gone - you can use this to pull new content
      * Ici il faudra afficher les recettes
      */
-    document.body.addEventListener('deckempty', function (ev) {
 
+    document.body.addEventListener('deckempty', function (ev) {
         results.classList.add('live');
         ev.detail.container.style.display = 'none';
     });
+
     /*
     window.addEventListener('load', function (ev) {
         // check if template is supported
