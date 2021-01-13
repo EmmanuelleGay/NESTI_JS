@@ -78,13 +78,13 @@ function chooseRecipe() {
 var monTest = document.getElementById(test);*/
 
 /**
- * allows to generate ingredients, read the json elements
+ * read the json elements
  */
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-        var myObj = JSON.parse(this.responseText);
-        myObj.forEach(function (element, index) {
+        var objIngregredient = JSON.parse(this.responseText);
+        objIngregredient.forEach(function (element, index) {
             var card = new Card(index, element.ingredients, element.images);
             card.create();
         });
@@ -92,7 +92,6 @@ xmlhttp.onreadystatechange = function () {
 };
 xmlhttp.open("GET", "./js/ingredients.json", true);
 xmlhttp.send();
-
 
 var ingredientList = [];
 var counterIngredient = 1;
@@ -141,6 +140,7 @@ class Card {
 
 var arrayIngRecipe = new Array;
 
+
 (function () {
     var animating = false;
 
@@ -182,13 +182,13 @@ var arrayIngRecipe = new Array;
     }
 
     function fireCustomEvent(name, payload) {
-        var newevent = new CustomEvent(name, { detail: payload });
+        var newevent = new CustomEvent(name, {detail: payload});
         document.body.dispatchEvent(newevent);
     }
 
     function getContainer(elm) {
         var origin = elm.parentNode;
-        if (!origin.classList.contains('cardcontainer')) {
+        if (! origin.classList.contains('cardcontainer')) {
             origin = origin.parentNode;
         }
         return origin;
@@ -208,7 +208,7 @@ var arrayIngRecipe = new Array;
         if (origin.classList.contains('list')) {
             if (ev.animationName === 'nope' || ev.animationName === 'yay') {
                 origin.querySelector('.current').remove();
-                if (!origin.querySelector('.card')) {
+                if (! origin.querySelector('.card')) {
                     fireCustomEvent('deckempty', {
                         origin: origin.querySelector('button'),
                         container: origin,
@@ -235,7 +235,7 @@ var arrayIngRecipe = new Array;
         var ingredientName = document.querySelector("#nameIngredient");
         ingredientName.innerHTML = ingredientList[counterIngredient];
         counterIngredient++;
-        if(counterIngredient == ingredientList.length){
+        if (counterIngredient == ingredientList.length) {
             counterIngredient = 0;
         }
     }
@@ -254,7 +254,7 @@ var arrayIngRecipe = new Array;
     var counter = document.querySelector('#counter');
 
     function updatecounter() {
-        --all;
+        -- all;
         counter.innerHTML = all;
     }
 
