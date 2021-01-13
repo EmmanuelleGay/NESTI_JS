@@ -2,6 +2,7 @@
     {
         "id": "1",
         "name": "moelleux au chocolat",
+        "images": "soft_chocolate.jpg",
         "ingredients": [
             "chocolat",
             "farine",
@@ -12,6 +13,7 @@
     {
         "id": "2",
         "name": "quatre quart",
+        "images": "four_quarter.jpg",
         "ingredients": [
             "farine",
             "oeuf",
@@ -22,6 +24,7 @@
     {
         "id": "3",
         "name": "banana bread",
+        "images": "banana_bread.jpg",
         "ingredients": [
             "farine",
             "oeuf",
@@ -33,6 +36,7 @@
     {
         "id": "4",
         "name": "ile flottante",
+        "images": "floating_island.jpg",
         "ingredients": [
             "lait",
             "oeuf",
@@ -43,6 +47,7 @@
     {
         "id": "5",
         "name": "crème brulée",
+        "images": "burnt_creme.jpg",
         "ingredients": [
             "vanille",
             "oeuf",
@@ -52,6 +57,7 @@
     {
         "id": "6",
         "name": "tarte au citron",
+        "images": "lemon_pie.jpg",
         "ingredients": [
             "farine",
             "oeuf",
@@ -63,6 +69,7 @@
     {
         "id": "7",
         "name": "tarte aux fruits rouges",
+        "images": "red_fruit_pie.jpg",
         "ingredients": [
             "lait",
             "oeuf",
@@ -75,6 +82,7 @@
     {
         "id": "8",
         "name": "tarte au chocolat",
+        "images": "chocolate_pie.jpg",
         "ingredients": [
             "pate sablée brisée",
             "creme fraiche",
@@ -84,6 +92,7 @@
     {
         "id": "9",
         "name": "sablés",
+        "images": "shortbread.jpg",
         "ingredients": [
             "farine",
             "oeuf",
@@ -94,6 +103,7 @@
     {
         "id": "10",
         "name": "muffins aux pepites de chocolat",
+        "images": "chocotate_pepite_muffins.jpg",
         "ingredients": [
             "lait",
             "oeuf",
@@ -105,7 +115,8 @@
     },
     {
         "id": "11",
-        "name": "carotte cake",
+        "name": "cake à la carotte",
+        "images": "carrot_cake.jpg",
         "ingredients": [
             "citron",
             "oeuf",
@@ -120,6 +131,7 @@
     {
         "id": "12",
         "name": "cheese cake",
+        "images": "cheesecake.jpg",
         "ingredients": [
             "fromage blanc",
             "oeuf",
@@ -132,6 +144,7 @@
     {
         "id": "13",
         "name": "fraisier",
+        "images": "strawberry.jpg",
         "ingredients": [
             "lait",
             "oeuf",
@@ -146,6 +159,7 @@
     {
         "id": "14",
         "name": "charlotte aux fraises",
+        "images": "strawberry_charlottes.jpg",
         "ingredients": [
             "sucre",
             "citron",
@@ -156,7 +170,8 @@
     },
     {
         "id": "15",
-        "name": "mousse au chocolat allégée",
+        "name": "mousse au chocolat",
+        "images": "chocolate_mousse.jpg",
         "ingredients": [
             "oeuf",
             "chocolat"
@@ -165,6 +180,7 @@
     {
         "id": "16",
         "name": "tartelette chocolat caramel",
+        "images": "caramel_chocolate_tart.jpg",
         "ingredients": [
             "oeuf",
             "sucre",
@@ -177,6 +193,7 @@
     {
         "id": "17",
         "name": "crumble aux pommes",
+        "images": "apple_crumble.jpg",
         "ingredients": [
             "sucre",
             "pommes",
@@ -187,6 +204,7 @@
     {
         "id": "18",
         "name": "tarte poire amandine",
+        "images": "pear_pie.jpg",
         "ingredients": [
             "oeuf",
             "sucre",
@@ -199,6 +217,7 @@
     {
         "id": "19",
         "name": "macaron à la pistache",
+        "images": "pistachio_macaroon.jpg",
         "ingredients": [
             "oeuf",
             "sucre",
@@ -210,6 +229,7 @@
     {
         "id": "20",
         "name": "salade de fruit",
+        "images": "fruit_salad.jpg",
         "ingredients": [
             "banane",
             "fraise",
@@ -221,6 +241,7 @@
     {
         "id": "21",
         "name": "clafoutis",
+        "images": "clafoutis.jpg",
         "ingredients": [
             "lait",
             "oeuf",
@@ -234,6 +255,7 @@
     {
         "id": "22",
         "name": "flan vanille",
+        "images": "vanilla_flan.jpg",
         "ingredients": [
             "lait",
             "oeuf",
@@ -247,6 +269,7 @@
     {
         "id": "23",
         "name": "tiramisu",
+        "images": "tiramisu.jpg",
         "ingredients": [
             "sucre",
             "creme fraiche",
