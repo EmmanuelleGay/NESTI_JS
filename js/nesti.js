@@ -82,27 +82,24 @@ var monTest = document.getElementById(test);*/
  */
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
+    var container = document.querySelector(".cardlist");
     if (this.readyState == 4 && this.status == 200) {
         var myObj = JSON.parse(this.responseText);
         myObj.forEach(function (element, index) {
             var card = new Card(index, element.ingredients, element.images);
-            card.create();
+            card.create(container, "ingredients");
         });
     }
 };
 xmlhttp.open("GET", "./js/ingredients.json", true);
 xmlhttp.send();
 
-
 var ingredientList = [];
 var counterIngredient = 1;
-
 
 /**
  * Create constructor for each Card
  */
-
-
 class Card {
     constructor(index, name, images) {
         this.index = index;
@@ -111,11 +108,11 @@ class Card {
     }
 
     /**
- * Create the card with image
- */
-    create() {
+     * Create the card with image
+     */
+    create(container, type) {
         var nameContainer = document.querySelector(".cardcontainer");
-        var container = document.querySelector(".cardlist");
+        // var container = document.querySelector(".cardlist");
         var cardContent = document.createElement("li");
         var containerIngredient = document.createElement("p");
         containerIngredient.id = "nameIngredient";
@@ -131,7 +128,7 @@ class Card {
         localStorage.setItem(this.index, this.name);
 
         /**add image link */
-        contentImage.src = "images/ingredients/" + this.images;
+        contentImage.src = "images/" + type + "/" + this.images;
         /** add element to the parent container */
         cardContent.appendChild(contentImage);
         container.appendChild(cardContent);
@@ -145,6 +142,7 @@ var arrayIngRecipe = new Array;
     var animating = false;
 
     function animatecard(ev) {
+
         if (animating === false) {
             var t = ev.target;
             if (t.className === 'but-nope') {
@@ -213,8 +211,6 @@ var arrayIngRecipe = new Array;
                         origin: origin.querySelector('button'),
                         container: origin,
                         card: null
-
-
                     });
 
                 } else {
@@ -223,7 +219,7 @@ var arrayIngRecipe = new Array;
             }
             /**
              * infinite list ingredients
-             *  */
+             */
 
             var container = document.querySelector(".cardlist");
             infinite.classList.remove("current");
@@ -232,21 +228,28 @@ var arrayIngRecipe = new Array;
         /**
          * allows to display name of ingredients of each click
          */
+        var results = document.querySelector('#results');
+        var test = document.querySelector(".cardcontainer");
         var ingredientName = document.querySelector("#nameIngredient");
         ingredientName.innerHTML = ingredientList[counterIngredient];
         counterIngredient++;
-        if(counterIngredient == ingredientList.length){
+        if (counterIngredient == ingredientList.length) {
             counterIngredient = 0;
+            results.classList.add('live');
+            test.style.display = 'none';
         }
     }
     document.body.addEventListener('animationend', animationdone);
     document.body.addEventListener('webkitAnimationEnd', animationdone);
     document.body.addEventListener('click', animatecard);
-    window.addEventListener('DOMContentLoaded', function () {
-        document.body.classList.add('tinderesque');
-    });
+    // window.addEventListener('DOMContentLoaded', function () {
+    // document.body.classList.add('tinderesque');
+    // });
 })();
 
+/**
+ * counter
+ */
 (function () {
 
     var all = 0;
@@ -259,7 +262,26 @@ var arrayIngRecipe = new Array;
     }
 
     document.body.addEventListener('yepcard', function (ev) {
-        results.innerHTML += '<li>' + ev.detail.card.innerHTML + '</li>';
+
+        /**
+         *allows to generate  the recipes, read the json elements
+         */
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            var container = document.querySelector(".cardlist");
+            if (this.readyState == 4 && this.status == 200) {
+                var myObj = JSON.parse(this.responseText);
+                myObj.forEach(function (element, index) {
+                    if (index == 0) {
+                        results.innerHTML += '<li ><img src="images/recipes/' + element.images + '"></li>';
+                    }
+                    //card.create(results, "recipes");
+                });
+            }
+        };
+        xmlhttp.open("GET", "./js/recipes.json", true);
+        xmlhttp.send();
+        //results.innerHTML += '<li>' + ev.detail.card.innerHTML + '</li>';
         updatecounter();
     });
 
@@ -272,10 +294,12 @@ var arrayIngRecipe = new Array;
      * Ici il faudra afficher les recettes
      */
 
-    document.body.addEventListener('deckempty', function (ev) {
-        results.classList.add('live');
-        ev.detail.container.style.display = 'none';
-    });
+    // document.body.addEventListener('deckempty', function (ev) {
+    // var test = document.querySelector(".cardcontainer");
+    // results.classList.add('live');
+    // ev.detail.container.style.display = 'none';
+    //test.style.display = 'none';
+    // });
 
     /*
     window.addEventListener('load', function (ev) {
