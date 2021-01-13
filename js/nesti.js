@@ -78,14 +78,14 @@ function chooseRecipe() {
 var monTest = document.getElementById(test);*/
 
 /**
- * allows to generate ingredients, read the json elements
+ * read the json elements
  */
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
     var container = document.querySelector(".cardlist");
     if (this.readyState == 4 && this.status == 200) {
-        var myObj = JSON.parse(this.responseText);
-        myObj.forEach(function (element, index) {
+        var objIngregredient = JSON.parse(this.responseText);
+        objIngregredient.forEach(function (element, index) {
             var card = new Card(index, element.ingredients, element.images);
             card.create(container, "ingredients");
         });
@@ -115,6 +115,7 @@ class Card {
         // var container = document.querySelector(".cardlist");
         var cardContent = document.createElement("li");
         var containerIngredient = document.createElement("p");
+        
         containerIngredient.id = "nameIngredient";
         var contentImage = document.createElement("img");
         /** add class card to be able to use animation */
@@ -133,10 +134,15 @@ class Card {
         cardContent.appendChild(contentImage);
         container.appendChild(cardContent);
         nameContainer.appendChild(containerIngredient);
+      
     }
 }
 
 var arrayIngRecipe = new Array;
+var buttonRecipes = document.createElement("button");
+buttonRecipe.querySelector("#buttonRecipe");
+buttonRecipes.innerHTML = "Accéder à mes recettes";
+buttonRecipe.appendChild(buttonRecipes);
 
 (function () {
     var animating = false;
@@ -180,13 +186,13 @@ var arrayIngRecipe = new Array;
     }
 
     function fireCustomEvent(name, payload) {
-        var newevent = new CustomEvent(name, { detail: payload });
+        var newevent = new CustomEvent(name, {detail: payload});
         document.body.dispatchEvent(newevent);
     }
 
     function getContainer(elm) {
         var origin = elm.parentNode;
-        if (!origin.classList.contains('cardcontainer')) {
+        if (! origin.classList.contains('cardcontainer')) {
             origin = origin.parentNode;
         }
         return origin;
@@ -206,7 +212,7 @@ var arrayIngRecipe = new Array;
         if (origin.classList.contains('list')) {
             if (ev.animationName === 'nope' || ev.animationName === 'yay') {
                 origin.querySelector('.current').remove();
-                if (!origin.querySelector('.card')) {
+                if (! origin.querySelector('.card')) {
                     fireCustomEvent('deckempty', {
                         origin: origin.querySelector('button'),
                         container: origin,
@@ -232,11 +238,15 @@ var arrayIngRecipe = new Array;
         var test = document.querySelector(".cardcontainer");
         var ingredientName = document.querySelector("#nameIngredient");
         ingredientName.innerHTML = ingredientList[counterIngredient];
+        var buttonRecipe = document.querySelector("#buttonRecipe");
+    
         counterIngredient++;
         if (counterIngredient == ingredientList.length) {
             counterIngredient = 0;
             results.classList.add('live');
             test.style.display = 'none';
+            buttonRecipe.style.display = 'none';
+
         }
     }
     document.body.addEventListener('animationend', animationdone);
@@ -257,7 +267,7 @@ var arrayIngRecipe = new Array;
     var counter = document.querySelector('#counter');
 
     function updatecounter() {
-        --all;
+        -- all;
         counter.innerHTML = all;
     }
 
