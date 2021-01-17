@@ -29,7 +29,7 @@
             "farine",
             "oeuf",
             "lait",
-            "banane",
+            "bananes",
             "poudre d'amande"
         ]
     },
@@ -63,7 +63,7 @@
             "oeuf",
             "sucre",
             "citron",
-            "pate sablée brisée"
+            "pate sablée"
         ]
     },
     {
@@ -74,8 +74,8 @@
             "lait",
             "oeuf",
             "sucre",
-            "fruit rouge",
-            "pate sablée brisée",
+            "fruits rouges",
+            "pate sablée",
             "creme fraiche"
         ]
     },
@@ -84,7 +84,7 @@
         "name": "tarte au chocolat",
         "images": "chocolate_pie.jpg",
         "ingredients": [
-            "pate sablée brisée",
+            "pate sablée",
             "creme fraiche",
             "chocolat"
         ]
@@ -121,7 +121,7 @@
             "citron",
             "oeuf",
             "sucre",
-            "carotte",
+            "carottes",
             "farine",
             "fromage blanc",
             "poudre d'amande",
@@ -149,7 +149,7 @@
             "lait",
             "oeuf",
             "sucre",
-            "fraise",
+            "fraises",
             "farine",
             "beurre",
             "vanille",
@@ -163,7 +163,7 @@
         "ingredients": [
             "sucre",
             "citron",
-            "fraise",
+            "fraises",
             "creme fraiche",
             "boudoir"
         ]
@@ -209,9 +209,9 @@
             "oeuf",
             "sucre",
             "beurre",
-            "poire",
+            "poires",
             "poudre d'amande",
-            "pate sablée brisée"
+            "pate sablée"
         ]
     },
     {
@@ -231,9 +231,9 @@
         "name": "salade de fruit",
         "images": "fruit_salad.jpg",
         "ingredients": [
-            "banane",
-            "fraise",
-            "poire",
+            "bananes",
+            "fraises",
+            "poires",
             "pommes",
             "cerises"
         ]
@@ -262,8 +262,7 @@
             "sucre",
             "vanille",
             "farine",
-            "beurre",
-            "pate sablée brisée"
+            "beurre"
         ]
     },
     {
