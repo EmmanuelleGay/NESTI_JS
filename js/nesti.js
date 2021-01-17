@@ -1,4 +1,3 @@
-
 /**
  * Create constructor for each Card
  */
@@ -12,31 +11,29 @@ class Card {
     /**
      * Create the card with image
      */
-    create(container, type) {
-        var nameContainer = document.querySelector(".cardcontainer");
+    create(container, type) { 
+        
         // var container = document.querySelector(".cardlist");
         var cardContent = document.createElement("li");
-
         var containerIngredient = document.querySelector("#nameIngredient");
         containerIngredient.id = "nameIngredient";
-
         var contentImage = document.createElement("img");
-        /** add class card to be able to use animation */
+
+        // add class card to be able to use animation
         cardContent.className = "card";
-        /** if it's the first, we add "current" to be used with the animation */
+        // if it's the first, we add "current" to be used with the animation
         if (this.index == 0) {
             cardContent.className += " current";
             containerIngredient.textContent += this.name;
         }
         ingredientList.push(this.name);
-        localStorage.setItem(this.index, this.name);
 
         /**add image link */
         contentImage.src = "images/" + type + "/" + this.images;
+        
         /** add element to the parent container */
         cardContent.appendChild(contentImage);
         container.appendChild(cardContent);
-        //     nameContainer.appendChild(containerIngredient);
 
     }
 }
@@ -45,35 +42,32 @@ var arrayIngRecipe = new Array;
 var buttonRecipes = document.createElement("a");
 var ingredientList = [];
 var counterIngredient = 1;
+var counterRecipes = 0;
 
 buttonRecipe.querySelector("#buttonRecipe");
-buttonRecipes.innerHTML = "Mes recettes";
-buttonRecipe.addEventListener('click', addRecipes);
+buttonRecipes.innerHTML = "Recettes disponibles";
+buttonRecipe.addEventListener('click', displayValidRecipes);
 buttonRecipe.appendChild(buttonRecipes);
 
-creationCard() ;
-
-
-
-
+creationCard();
 
 /**
  * read the json elements and create the card
  */
 function creationCard() {
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function () {
-    var container = document.querySelector(".cardlist");
-    if (this.readyState == 4 && this.status == 200) {
-        var objIngregredient = JSON.parse(this.responseText);
-        objIngregredient.forEach(function (element, index) {
-            var card = new Card(index, element.ingredients, element.images);
-            card.create(container, "ingredients");
-        });
-    }
-};
-xmlhttp.open("GET", "./js/ingredients.json", true);
-xmlhttp.send();
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        var container = document.querySelector(".cardlist");
+        if (this.readyState == 4 && this.status == 200) {
+            var objIngregredient = JSON.parse(this.responseText);
+            objIngregredient.forEach(function (element, index) {
+                var card = new Card(index, element.ingredients, element.images);
+                card.create(container, "ingredients");
+            });
+        }
+    };
+    xmlhttp.open("GET", "./js/ingredients.json", true);
+    xmlhttp.send();
 }
 
 
@@ -88,7 +82,7 @@ xmlhttp.send();
 
         if (animating === false) {
             var t = ev.target;
-             /**when the user clicked the "no" button */
+            /**when the user clicked the "no" button */
             if (t.className === 'but-nope') {
                 t.parentNode.classList.add('nope');
                 animating = true;
@@ -107,11 +101,9 @@ xmlhttp.send();
                     container: t.parentNode,
                     card: t.parentNode.querySelector('.card')
                 });
-                
+
                 /**add ingredient into recette list to propose */
                 arrayIngRecipe.push(ingredientList[counterIngredient - 1]);
-
-                console.log(arrayIngRecipe);
             }
             /** actual card => moving */
             if (t.classList.contains('current')) {
@@ -120,6 +112,7 @@ xmlhttp.send();
                     card: t
                 });
             }
+
         }
     }
 
@@ -144,7 +137,7 @@ xmlhttp.send();
 
         animating = false;
         var origin = getContainer(ev.target);
-        var infinite = origin.querySelector(".current")
+        //     var infinite = origin.querySelector(".current")
         if (ev.animationName === 'yay') {
             origin.classList.remove('yes');
         }
@@ -166,8 +159,8 @@ xmlhttp.send();
                 }
             }
         }
-        
-         // allows to display name of ingredients of each click
+
+        // allows to display name of ingredients of each click
         var ingredientName = document.querySelector("#nameIngredient");
         ingredientName.innerHTML = ingredientList[counterIngredient];
 
@@ -176,23 +169,22 @@ xmlhttp.send();
         if (counterIngredient == ingredientList.length) {
             counterIngredient = 0;
 
-            addRecipes();
+            displayValidRecipes();
         }
     }
     document.body.addEventListener('animationend', animationdone);
     document.body.addEventListener('webkitAnimationEnd', animationdone);
     document.body.addEventListener('click', animatecard);
+
 })();
-
-
 
 /**
  * check the recipes which matches with the ingredients' choices of the user
  */
-function validRecipes() {
+function checkRecipes() {
+
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
-        var container = document.querySelector(".cardlist");
         if (this.readyState == 4 && this.status == 200) {
             var myObj = JSON.parse(this.responseText);
             myObj.forEach(function (element, index) {
@@ -204,19 +196,27 @@ function validRecipes() {
                 });
                 if (haveAllIngredients) {
                     results.innerHTML += '<li ><img src="images/recipes/' + element.images + '"><p>' + element.name + ' </li>';
+                    counterRecipes += 1;
                 }
-
             });
+
+            if (counterRecipes == 0) {
+                var noRecipeContainer = document.querySelector(".noRecipe");
+                noRecipeContainer.innerHTML = "<p>Aucune recette ne correspond à votre demande<p>";
+            }
+
+            counterRecipes = getCounterRecipe();
         }
     };
     xmlhttp.open("GET", "./js/recipes.json", true);
     xmlhttp.send();
+
 }
 
 /**
  * display the valid recipes into the document
  */
-function addRecipes() {
+function displayValidRecipes() {
     var title = document.querySelector('.titleFridge');
     var cardcontainer = document.querySelector(".cardcontainer");
     var buttonRecipe = document.querySelector("#buttonRecipe");
@@ -224,11 +224,15 @@ function addRecipes() {
 
     title.innerHTML = "Mes recettes";
 
-    validRecipes();
+    checkRecipes();
 
+    // noRecipe.classList.add('live');
     results.classList.add('live');
     cardcontainer.style.display = 'none';
     buttonRecipe.style.display = 'none';
     nameIngredient.style.display = 'none';
 }
 
+function getCounterRecipe() { // console.log("get" + counterRecipes);
+    return counterRecipes;
+}
