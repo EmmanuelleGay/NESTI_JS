@@ -115,7 +115,7 @@ class Card {
         // var container = document.querySelector(".cardlist");
         var cardContent = document.createElement("li");
         var containerIngredient = document.createElement("p");
-        
+
         containerIngredient.id = "nameIngredient";
         var contentImage = document.createElement("img");
         /** add class card to be able to use animation */
@@ -134,14 +134,14 @@ class Card {
         cardContent.appendChild(contentImage);
         container.appendChild(cardContent);
         nameContainer.appendChild(containerIngredient);
-      
+
     }
 }
 
 var arrayIngRecipe = new Array;
 var buttonRecipes = document.createElement("button");
 buttonRecipe.querySelector("#buttonRecipe");
-buttonRecipes.innerHTML = "Accéder à mes recettes";
+buttonRecipes.innerHTML = "Cliquez ici pour choisir vos recettes";
 buttonRecipe.appendChild(buttonRecipes);
 
 (function () {
@@ -186,13 +186,13 @@ buttonRecipe.appendChild(buttonRecipes);
     }
 
     function fireCustomEvent(name, payload) {
-        var newevent = new CustomEvent(name, {detail: payload});
+        var newevent = new CustomEvent(name, { detail: payload });
         document.body.dispatchEvent(newevent);
     }
 
     function getContainer(elm) {
         var origin = elm.parentNode;
-        if (! origin.classList.contains('cardcontainer')) {
+        if (!origin.classList.contains('cardcontainer')) {
             origin = origin.parentNode;
         }
         return origin;
@@ -212,7 +212,7 @@ buttonRecipe.appendChild(buttonRecipes);
         if (origin.classList.contains('list')) {
             if (ev.animationName === 'nope' || ev.animationName === 'yay') {
                 origin.querySelector('.current').remove();
-                if (! origin.querySelector('.card')) {
+                if (!origin.querySelector('.card')) {
                     fireCustomEvent('deckempty', {
                         origin: origin.querySelector('button'),
                         container: origin,
@@ -237,9 +237,9 @@ buttonRecipe.appendChild(buttonRecipes);
         var results = document.querySelector('#results');
         var test = document.querySelector(".cardcontainer");
         var ingredientName = document.querySelector("#nameIngredient");
-        ingredientName.innerHTML = ingredientList[counterIngredient];
+        //ingredientName.innerHTML = ingredientList[counterIngredient];
         var buttonRecipe = document.querySelector("#buttonRecipe");
-    
+
         counterIngredient++;
         if (counterIngredient == ingredientList.length) {
             counterIngredient = 0;
@@ -267,7 +267,7 @@ buttonRecipe.appendChild(buttonRecipes);
     var counter = document.querySelector('#counter');
 
     function updatecounter() {
-        -- all;
+        --all;
         counter.innerHTML = all;
     }
 
