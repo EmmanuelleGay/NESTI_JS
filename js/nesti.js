@@ -142,6 +142,7 @@ var arrayIngRecipe = new Array;
 var buttonRecipes = document.createElement("button");
 buttonRecipe.querySelector("#buttonRecipe");
 buttonRecipes.innerHTML = "Cliquez ici pour choisir vos recettes";
+buttonRecipe.addEventListener('click',addRecipes);
 buttonRecipe.appendChild(buttonRecipes);
 
 (function () {
@@ -234,18 +235,27 @@ buttonRecipe.appendChild(buttonRecipes);
         /**
          * allows to display name of ingredients of each click
          */
-        var results = document.querySelector('#results');
-        var test = document.querySelector(".cardcontainer");
+        // var results = document.querySelector('#results');
+        // var test = document.querySelector(".cardcontainer");
+        // var buttonRecipe = document.querySelector("#buttonRecipe");
+
         var ingredientName = document.querySelector("#nameIngredient");
-        //ingredientName.innerHTML = ingredientList[counterIngredient];
+        ingredientName.innerHTML = ingredientList[counterIngredient];
         var buttonRecipe = document.querySelector("#buttonRecipe");
 
         counterIngredient++;
+
+        console.log(counterIngredient+ " toto " +ingredientList.length);
+
         if (counterIngredient == ingredientList.length) {
             counterIngredient = 0;
-            results.classList.add('live');
-            test.style.display = 'none';
-            buttonRecipe.style.display = 'none';
+
+            addRecipes();
+            //  results.classList.add('live');
+            // test.style.display = 'none';
+            // buttonRecipe.style.display = 'none';
+
+            
 
         }
     }
@@ -257,6 +267,40 @@ buttonRecipe.appendChild(buttonRecipes);
     // });
 })();
 
+function addRecipes(){
+var title = document.querySelector('.titleFridge');
+title.innerHTML = "toto est dans la place";
+    //var results = document.querySelector('#results');
+    var test = document.querySelector(".cardcontainer");
+    var buttonRecipe = document.querySelector("#buttonRecipe");
+
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        var container = document.querySelector(".cardlist");
+        if (this.readyState == 4 && this.status == 200) {
+            var myObj = JSON.parse(this.responseText);
+            myObj.forEach(function (element, index) {
+                var haveAll = true;
+                arrayIngRecipe.forEach(ingredients =>{
+                    if(!element.ingredients.includes(ingredients)){
+                        haveAll = false;
+                    }
+                });
+                if (haveAll) {
+                    results.innerHTML += '<li ><img src="images/recipes/' + element.images + '"></li>';
+                }
+                //card.create(results, "recipes");
+            });
+        }
+    };
+    xmlhttp.open("GET", "./js/recipes.json", true);
+    xmlhttp.send();
+
+    results.classList.add('live');
+    test.style.display = 'none';
+    buttonRecipe.style.display = 'none';
+}
 /**
  * counter
  */
@@ -276,21 +320,21 @@ buttonRecipe.appendChild(buttonRecipes);
         /**
          *allows to generate  the recipes, read the json elements
          */
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            var container = document.querySelector(".cardlist");
-            if (this.readyState == 4 && this.status == 200) {
-                var myObj = JSON.parse(this.responseText);
-                myObj.forEach(function (element, index) {
-                    if (index == 0) {
-                        results.innerHTML += '<li ><img src="images/recipes/' + element.images + '"></li>';
-                    }
-                    //card.create(results, "recipes");
-                });
-            }
-        };
-        xmlhttp.open("GET", "./js/recipes.json", true);
-        xmlhttp.send();
+        //  var xmlhttp = new XMLHttpRequest();
+        // xmlhttp.onreadystatechange = function () {
+        //     var container = document.querySelector(".cardlist");
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         var myObj = JSON.parse(this.responseText);
+        //         myObj.forEach(function (element, index) {
+        //             if (index == 0) {
+        //                 results.innerHTML += '<li ><img src="images/recipes/' + element.images + '"></li>';
+        //             }
+        //             //card.create(results, "recipes");
+        //         });
+        //     }
+        // };
+        // xmlhttp.open("GET", "./js/recipes.json", true);
+        // xmlhttp.send();
         //results.innerHTML += '<li>' + ev.detail.card.innerHTML + '</li>';
         updatecounter();
     });
@@ -298,6 +342,7 @@ buttonRecipe.appendChild(buttonRecipes);
     document.body.addEventListener('nopecard', function (ev) {
         updatecounter();
     });
+
 
     /**
      * when all cards are gone - you can use this to pull new content
