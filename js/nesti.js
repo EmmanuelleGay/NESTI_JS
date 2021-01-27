@@ -1,3 +1,10 @@
+
+var arrayIngRecipe = new Array;
+var buttonRecipes = document.createElement("a");
+var ingredientList = [];
+var counterIngredient = 1;
+var counterRecipes = 0;
+
 /**
  * Create constructor for each Card
  */
@@ -13,7 +20,6 @@ class Card {
      */
     create(container, type) { 
         
-        // var container = document.querySelector(".cardlist");
         var cardContent = document.createElement("li");
         var containerIngredient = document.querySelector("#nameIngredient");
         containerIngredient.id = "nameIngredient";
@@ -38,18 +44,20 @@ class Card {
     }
 }
 
-var arrayIngRecipe = new Array;
-var buttonRecipes = document.createElement("a");
-var ingredientList = [];
-var counterIngredient = 1;
-var counterRecipes = 0;
-
-buttonRecipe.querySelector("#buttonRecipe");
-buttonRecipes.innerHTML = "Recettes disponibles";
-buttonRecipe.addEventListener('click', displayValidRecipes);
-buttonRecipe.appendChild(buttonRecipes);
-
+createButtonrecipe();
 creationCard();
+
+
+
+/**
+ * allows to display button to access recipes
+ */
+function createButtonrecipe(){
+    buttonRecipe.querySelector("#buttonRecipe");
+    buttonRecipes.innerHTML = "Recettes disponibles";
+    buttonRecipe.addEventListener('click', displayValidRecipes);
+    buttonRecipe.appendChild(buttonRecipes);
+}
 
 /**
  * read the json elements and create the card
@@ -69,7 +77,6 @@ function creationCard() {
     xmlhttp.open("GET", "./js/ingredients.json", true);
     xmlhttp.send();
 }
-
 
 /**
  * allows to skeep each card on click
@@ -92,7 +99,7 @@ function creationCard() {
                     card: t.parentNode.querySelector('.card')
                 });
             }
-            /**when the user clicked the "yes" button */
+            //when the user clicked the "yes" button 
             if (t.className === 'but-yay') {
                 t.parentNode.classList.add('yes');
                 animating = true
@@ -102,10 +109,10 @@ function creationCard() {
                     card: t.parentNode.querySelector('.card')
                 });
 
-                /**add ingredient into recette list to propose */
+                //add ingredient into recette list to propose 
                 arrayIngRecipe.push(ingredientList[counterIngredient - 1]);
             }
-            /** actual card => moving */
+            // actual card => moving 
             if (t.classList.contains('current')) {
                 fireCustomEvent('cardchosen', {
                     container: getContainer(t),
@@ -226,13 +233,12 @@ function displayValidRecipes() {
 
     checkRecipes();
 
-    // noRecipe.classList.add('live');
     results.classList.add('live');
     cardcontainer.style.display = 'none';
     buttonRecipe.style.display = 'none';
     nameIngredient.style.display = 'none';
 }
 
-function getCounterRecipe() { // console.log("get" + counterRecipes);
+function getCounterRecipe() {
     return counterRecipes;
 }
