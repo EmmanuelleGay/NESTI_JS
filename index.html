@@ -1,42 +1,43 @@
- <!DOCTYPE html > <html lang="fr">
+<!DOCTYPE html >
+<html lang="fr">
 
     <head>
 
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Nesti Recipes</title>
+                <title>Nesti Recipes</title>
 
-        <link rel="stylesheet" href="css/style.css">
+                <link rel="stylesheet" href="css/style.css"></head>
 
-    </head>
+                <body>
 
-    <body>
+                    <div class="titleFridge">J'ai dans mes placards...</div>
 
-        <div class="titleFridge">J'ai dans mes placards...</div>
+                    <section>
 
-        <section>
+                        <div class="cardcontainer list">
 
-            <div class="cardcontainer list">
+                            <ul class="cardlist"></ul>
 
-                <ul class="cardlist"></ul>
+                            <button class="but-nope">X</button>
+                            <button class="but-yay">✔</button>
 
-                <button class="but-nope">X</button>
-                <button class="but-yay">✔</button>
+                        </div>
 
-            </div>
+                        <p id="nameIngredient"></p>
 
-            <p id="nameIngredient"></p>
+                            <p id="buttonRecipe"></p>
+                            <button id="reload" onClick="window.location.reload()"></button>
 
-            <p id="buttonRecipe"></p>
+                        <ul class="cardlist noRecipe" id="results"></ul>
+                        
 
-            <ul class="cardlist noRecipe" id="results"></ul>
-          
+                    </section>
 
-        </section>
 
-        <script src="js/nesti.js"></script>
+                    <script src="js/nesti.js"></script>
 
-    </body>
+                </body>
 
-</html>
+            </html>
