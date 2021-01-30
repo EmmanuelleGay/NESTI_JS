@@ -1,6 +1,8 @@
 
 var arrayIngRecipe = new Array;
-var buttonRecipes = document.createElement("a");
+var buttonRecipes;
+var buttonReload = document.getElementById("reload");
+
 var ingredientList = [];
 var counterIngredient = 1;
 var counterRecipes = 0;
@@ -48,15 +50,17 @@ createButtonrecipe();
 creationCard();
 
 
-
 /**
  * allows to display button to access recipes
  */
 function createButtonrecipe(){
+    buttonRecipes = document.createElement("a");
     buttonRecipe.querySelector("#buttonRecipe");
     buttonRecipes.innerHTML = "Recettes disponibles";
     buttonRecipe.addEventListener('click', displayValidRecipes);
     buttonRecipe.appendChild(buttonRecipes);
+
+    buttonReload.innerHTML = "Recommencer";
 }
 
 /**
@@ -204,12 +208,14 @@ function checkRecipes() {
                 if (haveAllIngredients) {
                     results.innerHTML += '<li ><img src="images/recipes/' + element.images + '"><p>' + element.name + ' </li>';
                     counterRecipes += 1;
+                    buttonReload.style.display = 'none';
                 }
             });
 
             if (counterRecipes == 0) {
-                var noRecipeContainer = document.querySelector(".noRecipe");
+                let noRecipeContainer = document.querySelector(".noRecipe");
                 noRecipeContainer.innerHTML = "<p>Aucune recette ne correspond à votre demande<p>";
+                
             }
 
             counterRecipes = getCounterRecipe();
@@ -220,13 +226,14 @@ function checkRecipes() {
 
 }
 
+
 /**
  * display the valid recipes into the document
  */
 function displayValidRecipes() {
     var title = document.querySelector('.titleFridge');
     var cardcontainer = document.querySelector(".cardcontainer");
-    var buttonRecipe = document.querySelector("#buttonRecipe");
+    buttonRecipe = document.querySelector("#buttonRecipe");
     var nameIngredient = document.querySelector("#nameIngredient");
 
     title.innerHTML = "Mes recettes";
@@ -237,8 +244,10 @@ function displayValidRecipes() {
     cardcontainer.style.display = 'none';
     buttonRecipe.style.display = 'none';
     nameIngredient.style.display = 'none';
+   
 }
 
 function getCounterRecipe() {
+    
     return counterRecipes;
 }
