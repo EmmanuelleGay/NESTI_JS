@@ -1,8 +1,6 @@
-
 var arrayIngRecipe = new Array;
 var buttonRecipes;
 var buttonReload = document.getElementById("reload");
-
 var ingredientList = [];
 var counterIngredient = 1;
 var counterRecipes = 0;
@@ -20,8 +18,8 @@ class Card {
     /**
      * Create the card with image
      */
-    create(container, type) { 
-        
+    create(container, type) {
+
         var cardContent = document.createElement("li");
         var containerIngredient = document.querySelector("#nameIngredient");
         containerIngredient.id = "nameIngredient";
@@ -38,11 +36,10 @@ class Card {
 
         /**add image link */
         contentImage.src = "images/" + type + "/" + this.images;
-        
+
         /** add element to the parent container */
         cardContent.appendChild(contentImage);
         container.appendChild(cardContent);
-
     }
 }
 
@@ -53,7 +50,7 @@ creationCard();
 /**
  * allows to display button to access recipes
  */
-function createButtonrecipe(){
+function createButtonrecipe() {
     buttonRecipes = document.createElement("a");
     buttonRecipe.querySelector("#buttonRecipe");
     buttonRecipes.innerHTML = "Recettes disponibles";
@@ -85,7 +82,6 @@ function creationCard() {
 /**
  * allows to skeep each card on click
  */
-
 (function () {
     var animating = false;
 
@@ -123,18 +119,17 @@ function creationCard() {
                     card: t
                 });
             }
-
         }
     }
 
     function fireCustomEvent(name, payload) {
-        var newevent = new CustomEvent(name, {detail: payload});
+        var newevent = new CustomEvent(name, { detail: payload });
         document.body.dispatchEvent(newevent);
     }
 
     function getContainer(elm) {
         var origin = elm.parentNode;
-        if (! origin.classList.contains('cardcontainer')) {
+        if (!origin.classList.contains('cardcontainer')) {
             origin = origin.parentNode;
         }
         return origin;
@@ -158,7 +153,7 @@ function creationCard() {
         if (origin.classList.contains('list')) {
             if (ev.animationName === 'nope' || ev.animationName === 'yay') {
                 origin.querySelector('.current').remove();
-                if (! origin.querySelector('.card')) {
+                if (!origin.querySelector('.card')) {
                     fireCustomEvent('deckempty', {
                         origin: origin.querySelector('button'),
                         container: origin,
@@ -201,7 +196,7 @@ function checkRecipes() {
             myObj.forEach(function (element, index) {
                 var haveAllIngredients = true;
                 arrayIngRecipe.forEach(ingredients => {
-                    if (! element.ingredients.includes(ingredients)) {
+                    if (!element.ingredients.includes(ingredients)) {
                         haveAllIngredients = false;
                     }
                 });
@@ -215,7 +210,6 @@ function checkRecipes() {
             if (counterRecipes == 0) {
                 let noRecipeContainer = document.querySelector(".noRecipe");
                 noRecipeContainer.innerHTML = "<p>Aucune recette ne correspond à votre demande<p>";
-                
             }
 
             counterRecipes = getCounterRecipe();
@@ -244,10 +238,10 @@ function displayValidRecipes() {
     cardcontainer.style.display = 'none';
     buttonRecipe.style.display = 'none';
     nameIngredient.style.display = 'none';
-   
+
 }
 
 function getCounterRecipe() {
-    
+
     return counterRecipes;
 }
