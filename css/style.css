@@ -33,27 +33,12 @@
 
 /*Button recipes and reload*************************************************************************************************************************************************/
 
-a {
+a,#reload {
     display: block;
-    margin-left: 33rem;
-    margin-top: 3rem;
+margin: auto;
     text-align: center;
     width: 10vw;
     padding: 0.5em;
-    font-family: cursive;
-    font-size: 20px;
-    border-radius: 10px;
-    background-color: #fff;
-    cursor: pointer;
-}
-
-#reload {
-    display: block;
-    margin-left: 50rem;
-    margin-top: -7rem;
-    text-align: center;
-    width: 10vw;
-    padding: 1.1em;
     font-family: cursive;
     font-size: 20px;
     border-radius: 10px;
@@ -131,11 +116,11 @@ body {
 section {
     display: block;
     padding: 0.5em 1em;
-    margin: 80px;
+    margin: 60px;
 }
 
 p, .titleFridge {
-    font-size: 40px;
+    font-size: 35px;
     color: rgb(80, 47, 47);
     font-family: cursive;
     text-align: center;
