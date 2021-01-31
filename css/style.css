@@ -35,7 +35,7 @@
 
 a,#reload {
     display: block;
-margin: auto;
+    margin: auto;
     text-align: center;
     width: 10vw;
     padding: 0.5em;
@@ -120,7 +120,7 @@ section {
 }
 
 p, .titleFridge {
-    font-size: 35px;
+    font-size: 30px;
     color: rgb(80, 47, 47);
     font-family: cursive;
     text-align: center;
